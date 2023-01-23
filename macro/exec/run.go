@@ -84,7 +84,8 @@ var WIDTH = 600
 var LINE_SPACING = 1.5
 
 func text2Png(text string) (*[]byte, error) {
-	// var h = 400.0
+	//replace tabs with 4 spaces
+	text = strings.ReplaceAll(text, "\t", "    ")
 	ctx1 := gg.NewContext(WIDTH, 600)
 	lc := drawStringWrapped(ctx1, text, LINE_SPACING*2, LINE_SPACING*2, float64(WIDTH), LINE_SPACING)
 	ctx := gg.NewContext(WIDTH, int(float64(lc+1)*(LINE_SPACING*float64(ctx1.FontHeight()))))
