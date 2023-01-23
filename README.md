@@ -123,6 +123,8 @@ You'll likely want to surround the body in curly braces to prevent the macro fro
 
 ```Usage: if <data> <condition> <data> <body> else <body>```
 
+`condition` - `==`, `!=`, `>=`, `<=`, `>`, or `<`
+
 You'll likely want to surround the body in curly braces to prevent the macro from being executed prematurely (see [Delayed Evaluation](#Delayed-Evaluation))
 
 #### Unsafe Macros
