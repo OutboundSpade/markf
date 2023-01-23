@@ -102,4 +102,73 @@ var DefaultMacros = []*Macro{
 			return output
 		},
 	},
+	{
+		MacroName: "if",
+		MacroFunc: func(args *[]string) string {
+			if len(*args) < 5 {
+				return "Usage: if <data> \\<condition> <data> \\<body> else \\<body>"
+			}
+			numberify := func(str string) (int, bool) {
+				num, err := strconv.Atoi(str)
+				if err != nil {
+					return 0, false
+				}
+				return num, true
+			}
+			data1 := (*args)[1]
+			condition := (*args)[2]
+			data2 := (*args)[3]
+			body := (*args)[4]
+			isTrue := false
+			num1, num1Valid := numberify(data1)
+			num2, num2Valid := numberify(data2)
+			requiresValidNums := false
+			switch condition {
+			case "=", "==":
+				if data1 == data2 {
+					isTrue = true
+				}
+			case "!=":
+				if data1 != data2 {
+					isTrue = true
+				}
+			case ">":
+				requiresValidNums = true
+				if num1 > num2 {
+					isTrue = true
+				}
+			case "<":
+				requiresValidNums = true
+				if num1 < num2 {
+					isTrue = true
+				}
+			case ">=":
+				requiresValidNums = true
+				if num1 >= num2 {
+					isTrue = true
+				}
+			case "<=":
+				requiresValidNums = true
+				if num1 <= num2 {
+					isTrue = true
+				}
+			default:
+				return fmt.Sprintf("invalid condition: %s", condition)
+			}
+			if requiresValidNums {
+				if !num1Valid {
+					return fmt.Sprintf("invalid number: %s", data1)
+				}
+				if !num2Valid {
+					return fmt.Sprintf("invalid number: %s", data2)
+				}
+			}
+			if isTrue {
+				return body
+			} else if len(*args) > 5 && (*args)[5] == "else" {
+				return (*args)[6]
+			}
+			return ""
+		},
+	},
 }

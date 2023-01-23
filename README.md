@@ -117,6 +117,14 @@ Please note that escape characters are not escaped until after evaluating all ma
 
 You'll likely want to surround the body in curly braces to prevent the macro from being executed prematurely (see [Delayed Evaluation](#Delayed-Evaluation))
 
+- `if`: Evaluates a condition and executes a macro if it is true
+
+```Usage: if <data> <condition> <data> <body>```
+
+```Usage: if <data> <condition> <data> <body> else <body>```
+
+You'll likely want to surround the body in curly braces to prevent the macro from being executed prematurely (see [Delayed Evaluation](#Delayed-Evaluation))
+
 #### Unsafe Macros
 
 > You must use the `-allow-unsafe` flag to use these macros
