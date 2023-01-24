@@ -203,9 +203,9 @@ func parseNode(node *blackfriday.Node, pdf *gopdf.GoPdf, level int) {
 				pdf.SetX((PAGE_WIDTH / 2) - (float64(img.Bounds().Max.X) / 2))
 			}
 		}
-		pdf.ImageFrom(img, pdf.GetX(), pdf.GetY()-(LINE_HEIGHT*FONT_SIZE), rect)
+		pdf.ImageFrom(img, pdf.GetX(), pdf.GetY(), rect)
 		if rect != nil {
-			pdf.Br((*rect).H / (LINE_HEIGHT * FONT_SIZE))
+			pdf.Br((*rect).H)
 		} else {
 			pdf.Br(float64(img.Bounds().Max.Y) / 2)
 		}
