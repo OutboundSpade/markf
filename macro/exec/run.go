@@ -80,7 +80,7 @@ func RunCommand(command string) *[]byte {
 	return &out
 }
 
-var WIDTH = 600
+var WIDTH = 500
 var LINE_SPACING = 1.5
 
 func text2Png(text string) (*[]byte, error) {
