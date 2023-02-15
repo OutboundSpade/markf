@@ -80,7 +80,7 @@ func RunCommand(command string) *[]byte {
 	return &out
 }
 
-var WIDTH = 500
+var WIDTH = 800
 var LINE_SPACING = 1.5
 
 func text2Png(text string) (*[]byte, error) {
@@ -151,7 +151,7 @@ func drawStringWrapped(ctx *gg.Context, text string, x, y, width, lineSpacing fl
 		}
 		for _, line := range splitLine {
 			lineCount += 1
-			ctx.DrawString(line, x, y+float64(lineCount)*LINE_SPACING*ctx.FontHeight())
+			ctx.DrawString(" "+line, x, y+float64(lineCount)*LINE_SPACING*ctx.FontHeight())
 		}
 	}
 	return lineCount
